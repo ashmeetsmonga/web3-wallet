@@ -1,6 +1,8 @@
 import type { Metadata } from "next";
 import { Inter } from "next/font/google";
 import "./globals.css";
+import RecoilProvider from "@/providers/RecoilProvider";
+import { Card } from "@/components/ui/card";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -15,8 +17,15 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en">
-      <body className={inter.className}>{children}</body>
+    <html lang="en" className="dark">
+      <body className={inter.className}>
+        <RecoilProvider>
+          <div className="w-screen h-screen flex flex-col items-center gap-10 p-20">
+            <h1 className="text-6xl font-bold text-primary">Wallet Manager</h1>
+            <Card className="w-[500px] h-4/5">{children}</Card>
+          </div>
+        </RecoilProvider>
+      </body>
     </html>
   );
 }
