@@ -6,9 +6,9 @@ export default function Home() {
   return (
     <CardContent className="flex flex-col justify-center gap-4 w-full h-full">
       <Link href="/mnemonic">
-        <Button className="w-full">Create New Wallet</Button>
+        <Button className="w-full dark">Create New Wallet</Button>
       </Link>
-      <Button className="w-full">Recover Wallet</Button>
+      <Button className="w-full dark">Recover Wallet</Button>
     </CardContent>
   );
 }

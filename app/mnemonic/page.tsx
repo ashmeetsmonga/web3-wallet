@@ -22,22 +22,22 @@ const MnemonicPage = () => {
 
   return (
     <CardContent className="flex flex-col items-center px-8 py-6 gap-8 h-full">
-      <h1 className="text-4xl text-primary font-bold">Mnemonic Phrase</h1>
+      <h1 className="text-4xl text-white font-bold">Mnemonic Phrase</h1>
       <div className="flex flex-col w-full justify-between h-full">
         <div className="grid grid-cols-3 gap-4 w-full">
           {mnemonic.split(" ").map((word) => (
-            <div key={word} className="bg-gray-900 text-primary w-full py-2 text-center rounded text-lg">
+            <div key={word} className="bg-white w-full py-2 text-center rounded text-lg">
               {word}
             </div>
           ))}
         </div>
         <div className="w-full flex flex-col gap-4">
           <div className="w-full flex justify-between">
-            <Button>Copy Phrase</Button>
-            <Button>Save in LocalStorage</Button>
+            <Button className="dark">Copy Phrase</Button>
+            <Button className="dark">Save in LocalStorage</Button>
           </div>
           <Link href="/wallet" className="w-full">
-            <Button className="w-full">Generate Wallet</Button>
+            <Button className="w-full dark">Generate Wallet</Button>
           </Link>
         </div>
       </div>

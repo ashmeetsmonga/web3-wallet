@@ -17,12 +17,12 @@ export default function RootLayout({
   children: React.ReactNode;
 }>) {
   return (
-    <html lang="en" className="dark">
+    <html lang="en" className="">
       <body className={inter.className}>
         <RecoilProvider>
           <div className="w-screen h-screen flex flex-col items-center gap-10 p-20">
-            <h1 className="text-6xl font-bold text-primary">Wallet Manager</h1>
-            <Card className="w-[500px] h-4/5">{children}</Card>
+            <h1 className="text-6xl font-bold ">Wallet Manager</h1>
+            <Card className="w-[500px] h-4/5 bg-black">{children}</Card>
           </div>
         </RecoilProvider>
       </body>
