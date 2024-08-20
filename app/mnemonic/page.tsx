@@ -24,12 +24,17 @@ const MnemonicPage = () => {
     <CardContent className="flex flex-col items-center px-8 py-6 gap-8 h-full">
       <h1 className="text-4xl text-white font-bold">Mnemonic Phrase</h1>
       <div className="flex flex-col w-full justify-between h-full">
-        <div className="grid grid-cols-3 gap-4 w-full">
-          {mnemonic.split(" ").map((word) => (
-            <div key={word} className="bg-white w-full py-2 text-center rounded text-lg">
-              {word}
-            </div>
-          ))}
+        <div className="w-full">
+          <div className="grid grid-cols-3 gap-4 w-full">
+            {mnemonic.split(" ").map((word) => (
+              <div key={word} className="bg-white w-full py-2 text-center rounded text-lg">
+                {word}
+              </div>
+            ))}
+          </div>
+          <Button onClick={generateMnemonic} className="dark w-full mt-10">
+            Refresh Mnemonic Phrase
+          </Button>
         </div>
         <div className="w-full flex flex-col gap-4">
           <div className="w-full flex justify-between">
