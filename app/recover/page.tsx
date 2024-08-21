@@ -24,7 +24,9 @@ const RecoverPage = () => {
     <CardContent className="flex flex-col py-8 px-6 items-center h-full">
       <h1 className="text-4xl text-white font-bold">Recover Wallet</h1>
       <div className="flex-grow flex flex-col justify-center gap-4 w-full">
-        <Button className="w-full dark">Provide Mnemonic Phrase</Button>
+        <Button onClick={() => router.push("/recover/mnemonic")} className="w-full dark">
+          Provide Mnemonic Phrase
+        </Button>
         <Button onClick={handleRecover} className="w-full dark" disabled={phrase === null}>
           Recover From LocalStorage
         </Button>
