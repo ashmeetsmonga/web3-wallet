@@ -39,7 +39,9 @@ const MnemonicPage = () => {
         <div className="w-full flex flex-col gap-4">
           <div className="w-full flex justify-between">
             <Button className="dark">Copy Phrase</Button>
-            <Button className="dark">Save in LocalStorage</Button>
+            <Button onClick={() => localStorage.setItem("mnemonic_phrase", mnemonic)} className="dark">
+              Save in LocalStorage
+            </Button>
           </div>
           <Link href="/wallet" className="w-full">
             <Button className="w-full dark">Generate Wallet</Button>

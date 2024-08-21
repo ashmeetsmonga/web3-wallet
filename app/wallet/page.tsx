@@ -28,7 +28,7 @@ const WalletPage = () => {
 
     const path = `m/44'/60'/${walletCount}'/0'`;
     const newWallet = node.derivePath(path);
-    setWallets([...wallets, { key: newWallet.publicKey, path: path, privateKey: newWallet.privateKey }]);
+    setWallets([...wallets, { key: newWallet.publicKey.substring(0, 42), path: path, privateKey: newWallet.privateKey }]);
   };
 
   useEffect(() => {

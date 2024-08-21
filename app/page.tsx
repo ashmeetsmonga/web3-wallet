@@ -8,7 +8,9 @@ export default function Home() {
       <Link href="/mnemonic">
         <Button className="w-full dark">Create New Wallet</Button>
       </Link>
-      <Button className="w-full dark">Recover Wallet</Button>
+      <Link href="/recover">
+        <Button className="w-full dark">Recover Wallet</Button>
+      </Link>
     </CardContent>
   );
 }
