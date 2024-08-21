@@ -52,10 +52,16 @@ const WalletPage = () => {
     if (solWallets.length === 0) generateSolWallet();
   }, []);
 
-  const handleDeleteWallet = (idx: number) => {
-    const newWallets = [...ethWallets];
-    newWallets.splice(idx, 1);
-    setEthWallets(newWallets);
+  const handleDeleteWallet = (idx: number, type: string) => {
+    if (type === "eth") {
+      const newWallets = [...ethWallets];
+      newWallets.splice(idx, 1);
+      setEthWallets(newWallets);
+    } else if (type === "sol") {
+      const newWallets = [...solWallets];
+      newWallets.splice(idx, 1);
+      setSolWallets(newWallets);
+    }
   };
 
   const handleSelect = (wallet: Wallet) => {
@@ -77,7 +83,7 @@ const WalletPage = () => {
               </div>
               <div className="flex gap-2 z-10">
                 <Clipboard className="hover:scale-110 transition-transform" />
-                <Trash2 className="hover:scale-110 transition-transform" onClick={() => handleDeleteWallet(idx)} />
+                <Trash2 className="hover:scale-110 transition-transform" onClick={() => handleDeleteWallet(idx, "eth")} />
               </div>
             </div>
           ))}
@@ -90,7 +96,7 @@ const WalletPage = () => {
               </div>
               <div className="flex gap-2 z-10">
                 <Clipboard className="hover:scale-110 transition-transform" />
-                <Trash2 className="hover:scale-110 transition-transform" onClick={() => handleDeleteWallet(idx)} />
+                <Trash2 className="hover:scale-110 transition-transform" onClick={() => handleDeleteWallet(idx, "sol")} />
               </div>
             </div>
           ))}

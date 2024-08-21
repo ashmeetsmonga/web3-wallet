@@ -3,6 +3,7 @@ import { Inter } from "next/font/google";
 import "./globals.css";
 import RecoilProvider from "@/providers/RecoilProvider";
 import { Card } from "@/components/ui/card";
+import ToasterProvider from "@/providers/ToasterProvider";
 
 const inter = Inter({ subsets: ["latin"] });
 
@@ -20,6 +21,7 @@ export default function RootLayout({
     <html lang="en" className="">
       <body className={inter.className}>
         <RecoilProvider>
+          <ToasterProvider />
           <div className="w-screen h-screen flex flex-col items-center gap-10 p-20">
             <h1 className="text-6xl font-bold ">Wallet Manager</h1>
             <Card className="w-[500px] h-4/5 bg-black">{children}</Card>
