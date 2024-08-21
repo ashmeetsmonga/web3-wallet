@@ -3,7 +3,8 @@ import { atom } from "recoil";
 export interface Wallet {
   key: string;
   path: string;
-  privateKey: string;
+  privateKey: string | Uint8Array;
+  type: string;
 }
 
 export const mnemonicState = atom({
@@ -11,8 +12,13 @@ export const mnemonicState = atom({
   default: "",
 });
 
-export const walletsState = atom({
-  key: "wallets",
+export const ethWalletsState = atom({
+  key: "ethWallets",
+  default: [] as Wallet[],
+});
+
+export const solWalletsState = atom({
+  key: "solWallets",
   default: [] as Wallet[],
 });
 

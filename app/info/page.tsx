@@ -11,14 +11,16 @@ const InfoPage = () => {
   const [amount, setAmount] = useState(0.0);
 
   const getBalance = async () => {
-    const publicKey = selectedWallet.key;
-    const { data } = await axios.post(`https://eth-sepolia.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_KEY}`, {
-      id: 1,
-      jsonrpc: "2.0",
-      params: [publicKey, "latest"],
-      method: "eth_getBalance",
-    });
-    setAmount(Number(data.result) / 10 ** 18);
+    if (selectedWallet.type === "eth") {
+      const publicKey = selectedWallet.key;
+      const { data } = await axios.post(`https://eth-sepolia.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_KEY}`, {
+        id: 1,
+        jsonrpc: "2.0",
+        params: [publicKey, "latest"],
+        method: "eth_getBalance",
+      });
+      setAmount(Number(data.result) / 10 ** 18);
+    }
   };
 
   useEffect(() => {
