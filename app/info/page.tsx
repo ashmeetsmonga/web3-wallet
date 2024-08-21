@@ -5,7 +5,7 @@ import { selectedWalletState } from "@/state/state";
 import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 import axios from "axios";
-import { LAMPORTS_PER_SOL } from "@solana/web3.js";
+import { LAMPORTS_PER_SOL, Transaction } from "@solana/web3.js";
 import toast from "react-hot-toast";
 import { RefreshCw } from "lucide-react";
 
@@ -13,6 +13,9 @@ const InfoPage = () => {
   const [selectedWallet, _] = useRecoilState(selectedWalletState);
   const [amount, setAmount] = useState(0.0);
   const [loading, setLoading] = useState(false);
+
+  const tx = new Transaction();
+  console.log(tx);
 
   const getBalance = async () => {
     const publicKey = selectedWallet.key;
@@ -77,7 +80,7 @@ const InfoPage = () => {
             <RefreshCw />
           </span>
         </div>
-        <div className="w-full mb-2 bg-gray-100 rounded p-4 flex flex-col justify-between gap-4 md:flex-row md:items-center mt-4">
+        <div className="w-full mb-2 bg-white rounded p-4 flex flex-col justify-between gap-4 md:flex-row md:items-center mt-4">
           <div className="w-full">
             <p className="font-thin uppercase">{selectedWallet.type}</p>
             <p className="font-mono text-sm font-semibold text-primary text-wrap text-ellipsis overflow-clip">{selectedWallet.key}</p>

@@ -32,7 +32,7 @@ const ProvideMnemonicPage = () => {
   return (
     <CardContent className="flex flex-col py-8 px-6 items-center justify-between h-full">
       <div className="w-full flex flex-col items-center">
-        <h1 className="text-4xl text-white font-bold">Mnemonic Phrase</h1>
+        <h1 className="text-4xl font-bold">Mnemonic Phrase</h1>
         <Input
           type="text"
           placeholder="Enter Mnemonic Phrase"
@@ -47,7 +47,7 @@ const ProvideMnemonicPage = () => {
           {mnemonic.split(" ").map(
             (word) =>
               word && (
-                <div key={word} className="bg-white w-full py-2 text-center rounded text-lg">
+                <div key={word} className="bg-gray-100 w-full py-2 text-center rounded overflow-clip">
                   {word}
                 </div>
               )
@@ -55,7 +55,7 @@ const ProvideMnemonicPage = () => {
         </div>
       </div>
       <div className="w-full">
-        <Button onClick={handleRecovery} className="dark w-full">
+        <Button onClick={handleRecovery} className="w-full">
           Recover Wallet
         </Button>
       </div>
