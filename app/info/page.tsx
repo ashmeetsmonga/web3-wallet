@@ -69,26 +69,26 @@ const InfoPage = () => {
   return (
     <CardContent className="flex flex-col w-full items-center py-6 px-8 h-full justify-between">
       <div className="w-full flex flex-col items-center">
-        <h1 className="text-4xl text-white font-bold">Wallet Info</h1>
+        <h1 className="text-4xl font-bold">Wallet Info</h1>
         <div className="relative">
-          {loading && <h2 className="text-9xl text-gray-800 font-black mt-4 tracking-tighter animate-pulse">0.00</h2>}
-          {!loading && <h2 className="text-9xl text-white font-black mt-4 tracking-tighter">{amount.toFixed(2)}</h2>}
+          {loading && <h2 className="text-9xl text-gray-800 font-black mt-4 tracking-tighter animate-pulse">{amount.toFixed(2)}</h2>}
+          {!loading && <h2 className="text-9xl font-black mt-4 tracking-tighter">{amount.toFixed(2)}</h2>}
           <span onClick={getBalance} className="absolute top-16 -right-12 cursor-pointer">
-            <RefreshCw color="white" />
+            <RefreshCw />
           </span>
         </div>
-        <div className="w-full mb-2 bg-white rounded p-4 flex flex-col justify-between gap-4 md:flex-row md:items-center mt-4">
+        <div className="w-full mb-2 bg-gray-100 rounded p-4 flex flex-col justify-between gap-4 md:flex-row md:items-center mt-4">
           <div className="w-full">
+            <p className="font-thin uppercase">{selectedWallet.type}</p>
             <p className="font-mono text-sm font-semibold text-primary text-wrap text-ellipsis overflow-clip">{selectedWallet.key}</p>
             <p className="font-thin text-xs text-primary">path: {selectedWallet.path}</p>
           </div>
         </div>
       </div>
       <div className="w-full flex flex-col gap-4">
-        <Button className="dark">Send</Button>
-        {/* <Button className="dark">Transactions</Button> */}
+        <Button className="">Send</Button>
         {selectedWallet.type === "sol" && (
-          <Button className="dark" onClick={handleAirdrop}>
+          <Button className="" onClick={handleAirdrop}>
             Airdrop
           </Button>
         )}

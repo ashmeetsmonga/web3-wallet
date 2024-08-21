@@ -72,11 +72,11 @@ const WalletPage = () => {
   return (
     <CardContent className="flex flex-col w-full items-center py-6 px-8 h-full justify-between">
       <div className="flex flex-col items-center w-full">
-        <h1 className="text-4xl text-white font-bold">Wallets</h1>
+        <h1 className="text-4xl font-bold">Wallets</h1>
         <div className="flex flex-col w-full gap-2 mt-4 h-[450px] overflow-y-auto scrollbar scrollbar-none scrollbar-thumb-primary">
-          <p className="text-white font-thin">Eth Wallets</p>
+          <p className=" font-thin">Eth Wallets</p>
           {ethWallets.map((wallet, idx) => (
-            <div key={wallet.path} className="w-full mb-2 bg-white rounded p-4 flex flex-col justify-between gap-4 md:flex-row md:items-center cursor-pointer hover:bg-gray-100">
+            <div key={wallet.path} className="w-full mb-2 bg-gray-100 rounded p-4 flex flex-col justify-between gap-4 md:flex-row md:items-center cursor-pointer hover:bg-gray-100">
               <div onClick={() => handleSelect(wallet)} className="w-4/5">
                 <p className="font-mono text-sm font-semibold text-primary text-wrap text-ellipsis overflow-clip">{wallet.key}</p>
                 <p className="font-thin text-xs text-primary">path: {wallet.path}</p>
@@ -87,9 +87,9 @@ const WalletPage = () => {
               </div>
             </div>
           ))}
-          <p className="text-white font-thin">Sol Wallets</p>
+          <p className="font-thin">Sol Wallets</p>
           {solWallets.map((wallet, idx) => (
-            <div key={wallet.path} className="w-full mb-2 bg-white rounded p-4 flex flex-col justify-between gap-4 md:flex-row md:items-center cursor-pointer hover:bg-gray-100">
+            <div key={wallet.path} className="w-full mb-2 bg-gray-100 rounded p-4 flex flex-col justify-between gap-4 md:flex-row md:items-center cursor-pointer hover:bg-gray-100">
               <div onClick={() => handleSelect(wallet)} className="w-4/5">
                 <p className="font-mono text-sm font-semibold text-primary text-wrap text-ellipsis overflow-clip">{wallet.key}</p>
                 <p className="font-thin text-xs text-primary">path: {wallet.path}</p>
@@ -103,10 +103,10 @@ const WalletPage = () => {
         </div>
       </div>
       <div className="w-full flex gap-2">
-        <Button className="w-full dark" onClick={generateEthWallet}>
+        <Button className="w-full" onClick={generateEthWallet}>
           Add New Eth Wallet
         </Button>
-        <Button className="w-full dark" onClick={generateSolWallet}>
+        <Button className="w-full" onClick={generateSolWallet}>
           Add New Sol Wallet
         </Button>
       </div>
