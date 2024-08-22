@@ -55,7 +55,7 @@ const ProvideMnemonicPage = () => {
         </div>
       </div>
       <div className="w-full">
-        <Button onClick={handleRecovery} className="w-full">
+        <Button onClick={handleRecovery} disabled={mnemonic === ""} className="w-full">
           Recover Wallet
         </Button>
       </div>
