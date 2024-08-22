@@ -15,6 +15,7 @@ const InfoPage = () => {
   const [selectedWallet, setSelectedWallet] = useRecoilState(selectedWalletState);
   const [amount, setAmount] = useState(0.0);
   const [loading, setLoading] = useState(false);
+  const [airdropSuccess, setAirdropSuccess] = useState(false);
 
   const router = useRouter();
 
@@ -43,6 +44,7 @@ const InfoPage = () => {
         params: [publicKey],
       });
       setLoading(false);
+      if (data.result.value / LAMPORTS_PER_SOL !== amount) setAirdropSuccess(false);
       setAmount(data.result.value / LAMPORTS_PER_SOL);
       setSelectedWallet({ ...selectedWallet, amount: data.result.value });
     }
@@ -53,6 +55,7 @@ const InfoPage = () => {
   }, []);
 
   const handleAirdrop = async () => {
+    setAirdropSuccess(false);
     const publicKey = selectedWallet.key;
     if (selectedWallet.type === "sol") {
       let toastId;
@@ -64,7 +67,8 @@ const InfoPage = () => {
           method: "requestAirdrop",
           params: [publicKey, 1000000000],
         });
-        toast.success("Airdrop successful. 1 Sol would be added within 5 mins", { id: toastId });
+        toast.dismiss(toastId);
+        setAirdropSuccess(true);
       } catch (e) {
         console.log(e);
         toast.error("Error in requesting airdrop, please try after some time", { id: toastId });
@@ -90,6 +94,13 @@ const InfoPage = () => {
             <p className="font-thin text-xs text-primary">path: {selectedWallet.path}</p>
           </div>
         </div>
+        {airdropSuccess && (
+          <div className="w-full bg-white rounded p-4 flex flex-col justify-between gap-4 md:flex-row md:items-center mt-3">
+            <div className="w-full">
+              <p className="text-xs font-light">Airdrop Successful! Changes would be reflected within 5 mins</p>
+            </div>
+          </div>
+        )}
       </div>
       <div className="w-full flex flex-col gap-4">
         {}

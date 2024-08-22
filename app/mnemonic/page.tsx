@@ -65,7 +65,10 @@ const MnemonicPage = () => {
             <Button onClick={() => copyToClipboard(mnemonic, "Phrase")}>Copy Phrase</Button>
             <Button
               onClick={() => {
-                if (window !== undefined) localStorage.setItem("mnemonic_phrase", mnemonic);
+                if (window !== undefined) {
+                  localStorage.setItem("mnemonic_phrase", mnemonic);
+                  toast.success("Phrase saved to LocalStorage");
+                }
               }}
               className=""
             >
