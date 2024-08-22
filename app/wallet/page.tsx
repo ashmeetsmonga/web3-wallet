@@ -10,6 +10,7 @@ import { Clipboard, Trash2 } from "lucide-react";
 import { useRouter } from "next/navigation";
 import { Keypair } from "@solana/web3.js";
 import { HDKey } from "micro-ed25519-hdkey";
+import toast from "react-hot-toast";
 
 const WalletPage = () => {
   const [ethWallets, setEthWallets] = useRecoilState(ethWalletsState);
@@ -30,7 +31,7 @@ const WalletPage = () => {
 
     const path = `m/44'/60'/${walletCount}'/0'`;
     const newWallet = node.derivePath(path);
-    setEthWallets([...ethWallets, { key: newWallet.publicKey.substring(0, 42), path: path, privateKey: newWallet.privateKey, type: "eth" }]);
+    setEthWallets([...ethWallets, { key: newWallet.publicKey.substring(0, 42), path: path, privateKey: newWallet.privateKey, type: "eth", amount: 0, ethWallet: newWallet }]);
   };
 
   const generateSolWallet = () => {
@@ -44,7 +45,7 @@ const WalletPage = () => {
     const path = `m/44'/501'/${walletCount}'/0'`;
     const keypair = Keypair.fromSeed(hd.derive(path).privateKey);
 
-    setSolWallets([...solWallets, { key: keypair.publicKey.toBase58(), path: path, privateKey: keypair.secretKey, type: "sol" }]);
+    setSolWallets([...solWallets, { key: keypair.publicKey.toBase58(), path: path, privateKey: keypair.secretKey, type: "sol", amount: 0 }]);
   };
 
   useEffect(() => {
@@ -69,6 +70,13 @@ const WalletPage = () => {
     router.push("/info");
   };
 
+  const copyToClipboard = (text: string, type: string) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => toast.success(`${type} copied to clipboard!`))
+      .catch(() => toast.error(`Failed to copy ${type.toLowerCase()}`));
+  };
+
   return (
     <CardContent className="flex flex-col w-full items-center py-6 px-8 h-full justify-between">
       <div className="flex flex-col items-center w-full">
@@ -86,8 +94,20 @@ const WalletPage = () => {
                 <p className="font-thin text-xs text-primary">path: {wallet.path}</p>
               </div>
               <div className="flex gap-2 z-10">
-                <Clipboard className="hover:scale-110 transition-transform" />
-                <Trash2 className="hover:scale-110 transition-transform" onClick={() => handleDeleteWallet(idx, "eth")} />
+                <Clipboard
+                  className="hover:scale-110 transition-transform"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    copyToClipboard(wallet.key, "Wallet Key");
+                  }}
+                />
+                <Trash2
+                  className="hover:scale-110 transition-transform"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDeleteWallet(idx, "eth");
+                  }}
+                />
               </div>
             </div>
           ))}
@@ -103,8 +123,20 @@ const WalletPage = () => {
                 <p className="font-thin text-xs text-primary">path: {wallet.path}</p>
               </div>
               <div className="flex gap-2 z-10">
-                <Clipboard className="hover:scale-110 transition-transform" />
-                <Trash2 className="hover:scale-110 transition-transform" onClick={() => handleDeleteWallet(idx, "sol")} />
+                <Clipboard
+                  className="hover:scale-110 transition-transform"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    copyToClipboard(wallet.key, "Wallet Key");
+                  }}
+                />
+                <Trash2
+                  className="hover:scale-110 transition-transform"
+                  onClick={(e) => {
+                    e.stopPropagation();
+                    handleDeleteWallet(idx, "sol");
+                  }}
+                />
               </div>
             </div>
           ))}

@@ -8,14 +8,14 @@ import axios from "axios";
 import { LAMPORTS_PER_SOL, Transaction } from "@solana/web3.js";
 import toast from "react-hot-toast";
 import { RefreshCw } from "lucide-react";
+import { useRouter } from "next/navigation";
 
 const InfoPage = () => {
-  const [selectedWallet, _] = useRecoilState(selectedWalletState);
+  const [selectedWallet, setSelectedWallet] = useRecoilState(selectedWalletState);
   const [amount, setAmount] = useState(0.0);
   const [loading, setLoading] = useState(false);
 
-  const tx = new Transaction();
-  console.log(tx);
+  const router = useRouter();
 
   const getBalance = async () => {
     const publicKey = selectedWallet.key;
@@ -30,6 +30,7 @@ const InfoPage = () => {
         });
         setLoading(false);
         setAmount(Number(data.result) / 10 ** 18);
+        setSelectedWallet({ ...selectedWallet, amount: Number(data.result) });
       } catch (e) {
         console.log(e);
       }
@@ -42,6 +43,7 @@ const InfoPage = () => {
       });
       setLoading(false);
       setAmount(data.result.value / LAMPORTS_PER_SOL);
+      setSelectedWallet({ ...selectedWallet, amount: data.result.value });
     }
   };
 
@@ -89,7 +91,7 @@ const InfoPage = () => {
         </div>
       </div>
       <div className="w-full flex flex-col gap-4">
-        <Button className="">Send</Button>
+        <Button onClick={() => router.push("/send")}>Send</Button>
         {selectedWallet.type === "sol" && (
           <Button className="" onClick={handleAirdrop}>
             Airdrop

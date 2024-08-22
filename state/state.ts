@@ -1,3 +1,5 @@
+import { Keypair } from "@solana/web3.js";
+import { HDNodeWallet } from "ethers";
 import { atom } from "recoil";
 
 export interface Wallet {
@@ -5,6 +7,8 @@ export interface Wallet {
   path: string;
   privateKey: string | Uint8Array;
   type: string;
+  amount: number;
+  ethWallet?: HDNodeWallet;
 }
 
 export const mnemonicState = atom({

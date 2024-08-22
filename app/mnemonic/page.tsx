@@ -8,6 +8,7 @@ import { useRecoilState } from "recoil";
 import { ethWalletsState, mnemonicState, solWalletsState } from "@/state/state";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
+import toast from "react-hot-toast";
 
 const MnemonicPage = () => {
   const [mnemonic, setMnemonic] = useState("");
@@ -33,6 +34,13 @@ const MnemonicPage = () => {
     router.push("/wallet");
   };
 
+  const copyToClipboard = (text: string, type: string) => {
+    navigator.clipboard
+      .writeText(text)
+      .then(() => toast.success(`${type} copied to clipboard!`))
+      .catch(() => toast.error(`Failed to copy ${type.toLowerCase()}`));
+  };
+
   return (
     <CardContent className="flex flex-col items-center px-8 py-6 gap-8 h-full">
       <h1 className="text-4xl font-bold">Mnemonic Phrase</h1>
@@ -51,7 +59,7 @@ const MnemonicPage = () => {
         </div>
         <div className="w-full flex flex-col gap-4">
           <div className="w-full flex justify-between">
-            <Button className="">Copy Phrase</Button>
+            <Button onClick={() => copyToClipboard(mnemonic, "Mnemonic Phrase")}>Copy Phrase</Button>
             <Button onClick={() => localStorage.setItem("mnemonic_phrase", mnemonic)} className="">
               Save in LocalStorage
             </Button>
