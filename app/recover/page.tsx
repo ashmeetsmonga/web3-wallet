@@ -4,17 +4,20 @@ import { Button } from "@/components/ui/button";
 import { CardContent } from "@/components/ui/card";
 import { ethWalletsState, mnemonicState, solWalletsState } from "@/state/state";
 import { useRouter } from "next/navigation";
-import React from "react";
+import React, { useEffect, useState } from "react";
 import { useRecoilState } from "recoil";
 
 const RecoverPage = () => {
   const [mnemonic, setMnemonic] = useRecoilState(mnemonicState);
   const [ethWallets, setEthWallets] = useRecoilState(ethWalletsState);
   const [solWallets, setSolWallets] = useRecoilState(solWalletsState);
+  const [phrase, setPhrase] = useState("");
 
   const router = useRouter();
 
-  const phrase = localStorage.getItem("mnemonic_phrase");
+  useEffect(() => {
+    if (window !== undefined) setPhrase(localStorage.getItem("mnemonic_phrase") as string);
+  });
 
   const handleRecover = () => {
     if (phrase === null) return;

@@ -63,7 +63,12 @@ const MnemonicPage = () => {
         <div className="w-full flex flex-col gap-4">
           <div className="w-full flex justify-between">
             <Button onClick={() => copyToClipboard(mnemonic, "Phrase")}>Copy Phrase</Button>
-            <Button onClick={() => localStorage.setItem("mnemonic_phrase", mnemonic)} className="">
+            <Button
+              onClick={() => {
+                if (window !== undefined) localStorage.setItem("mnemonic_phrase", mnemonic);
+              }}
+              className=""
+            >
               Save in LocalStorage
             </Button>
           </div>
