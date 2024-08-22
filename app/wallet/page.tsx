@@ -31,7 +31,7 @@ const WalletPage = () => {
 
     const path = `m/44'/60'/${walletCount}'/0'`;
     const newWallet = node.derivePath(path);
-    setEthWallets([...ethWallets, { key: newWallet.publicKey.substring(0, 42), path: path, privateKey: newWallet.privateKey, type: "eth", amount: 0, ethWallet: newWallet }]);
+    setEthWallets([...ethWallets, { key: newWallet.publicKey.substring(0, 42), path: path, privateKey: newWallet.privateKey, type: "eth", amount: 0 }]);
   };
 
   const generateSolWallet = () => {

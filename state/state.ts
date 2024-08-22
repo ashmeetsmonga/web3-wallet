@@ -8,7 +8,6 @@ export interface Wallet {
   privateKey: string | Uint8Array;
   type: string;
   amount: number;
-  ethWallet?: HDNodeWallet;
 }
 
 export const mnemonicState = atom({

@@ -92,18 +92,24 @@ const InfoPage = () => {
         </div>
       </div>
       <div className="w-full flex flex-col gap-4">
-        <Button onClick={() => router.push("/send")}>Send</Button>
+        {}
         {selectedWallet.type === "sol" && (
-          <Button className="" onClick={handleAirdrop}>
-            Airdrop
-          </Button>
-        )}
-        {selectedWallet.type === "eth" && (
-          <Link className="w-full" href="https://cloud.google.com/application/web3/faucet/ethereum/sepolia" target="_blank">
-            <Button className="w-full" onClick={handleAirdrop}>
+          <>
+            <Button className="" onClick={handleAirdrop}>
               Airdrop
             </Button>
-          </Link>
+            <Button onClick={() => router.push("/send")}>Send</Button>
+          </>
+        )}
+        {selectedWallet.type === "eth" && (
+          <>
+            <Link className="w-full" href="https://cloud.google.com/application/web3/faucet/ethereum/sepolia" target="_blank">
+              <Button className="w-full" onClick={handleAirdrop}>
+                Airdrop
+              </Button>
+            </Link>
+            <Button disabled>Send (Work In Progress)</Button>
+          </>
         )}
       </div>
     </CardContent>

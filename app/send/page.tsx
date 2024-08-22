@@ -31,22 +31,22 @@ const SendPage = () => {
   };
 
   const handleEthTransactions = async () => {
-    try {
-      const provider = new JsonRpcProvider(`https://eth-sepolia.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_KEY}`, "sepolia");
-      console.log(provider);
-      console.log(selectedWallet.key, selectedWallet.privateKey);
-      const signer = selectedWallet.ethWallet!.connect(provider);
-      console.log(signer.publicKey, signer.privateKey);
-      const tx = await signer.sendTransaction({
-        from: selectedWallet.privateKey as string,
-        to: receiver,
-        value: parseEther(amount.toString()),
-      });
-      console.log(tx);
-      await tx.wait();
-    } catch (e) {
-      console.log(e);
-    }
+    // try {
+    //   const provider = new JsonRpcProvider(`https://eth-sepolia.g.alchemy.com/v2/${process.env.NEXT_PUBLIC_ALCHEMY_KEY}`, "sepolia");
+    //   console.log(provider);
+    //   console.log(selectedWallet.key, selectedWallet.privateKey);
+    //   const signer = selectedWallet.ethWallet!.connect(provider);
+    //   console.log(signer.publicKey, signer.privateKey);
+    //   const tx = await signer.sendTransaction({
+    //     from: selectedWallet.privateKey as string,
+    //     to: receiver,
+    //     value: parseEther(amount.toString()),
+    //   });
+    //   console.log(tx);
+    //   await tx.wait();
+    // } catch (e) {
+    //   console.log(e);
+    // }
   };
 
   const handleSolTransaction = async () => {
@@ -91,7 +91,7 @@ const SendPage = () => {
           />
         </div>
         <div className="mt-4 w-full">
-          <p className="font-thin text-sm">Enter Receiver's Address</p>
+          <p className="font-thin text-sm">Enter Receiver&apos;s Address</p>
           <Input type="text" placeholder="Receiver's Address" value={receiver} onChange={(e) => setReceiver(e.target.value)} />
         </div>
         {transactionHash && (
