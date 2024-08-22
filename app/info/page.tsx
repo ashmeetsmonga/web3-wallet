@@ -9,6 +9,7 @@ import { LAMPORTS_PER_SOL, Transaction } from "@solana/web3.js";
 import toast from "react-hot-toast";
 import { RefreshCw } from "lucide-react";
 import { useRouter } from "next/navigation";
+import Link from "next/link";
 
 const InfoPage = () => {
   const [selectedWallet, setSelectedWallet] = useRecoilState(selectedWalletState);
@@ -96,6 +97,13 @@ const InfoPage = () => {
           <Button className="" onClick={handleAirdrop}>
             Airdrop
           </Button>
+        )}
+        {selectedWallet.type === "eth" && (
+          <Link className="w-full" href="https://cloud.google.com/application/web3/faucet/ethereum/sepolia" target="_blank">
+            <Button className="w-full" onClick={handleAirdrop}>
+              Airdrop
+            </Button>
+          </Link>
         )}
       </div>
     </CardContent>

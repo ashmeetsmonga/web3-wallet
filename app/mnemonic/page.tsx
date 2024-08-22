@@ -9,6 +9,7 @@ import { ethWalletsState, mnemonicState, solWalletsState } from "@/state/state";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import toast from "react-hot-toast";
+import { ChevronLeft } from "lucide-react";
 
 const MnemonicPage = () => {
   const [mnemonic, setMnemonic] = useState("");
@@ -43,7 +44,9 @@ const MnemonicPage = () => {
 
   return (
     <CardContent className="flex flex-col items-center px-8 py-6 gap-8 h-full">
-      <h1 className="text-4xl font-bold">Mnemonic Phrase</h1>
+      <div className="relative w-full text-center flex justify-center">
+        <h1 className="text-4xl font-bold">Mnemonic Phrase</h1>
+      </div>
       <div className="flex flex-col w-full justify-between h-full">
         <div className="w-full">
           <div className="grid grid-cols-3 gap-4 w-full">
@@ -59,7 +62,7 @@ const MnemonicPage = () => {
         </div>
         <div className="w-full flex flex-col gap-4">
           <div className="w-full flex justify-between">
-            <Button onClick={() => copyToClipboard(mnemonic, "Mnemonic Phrase")}>Copy Phrase</Button>
+            <Button onClick={() => copyToClipboard(mnemonic, "Phrase")}>Copy Phrase</Button>
             <Button onClick={() => localStorage.setItem("mnemonic_phrase", mnemonic)} className="">
               Save in LocalStorage
             </Button>
