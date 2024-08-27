@@ -97,7 +97,7 @@ const InfoPage = () => {
         {airdropSuccess && (
           <div className="w-full bg-white rounded p-4 flex flex-col justify-between gap-4 md:flex-row md:items-center mt-3">
             <div className="w-full">
-              <p className="text-xs font-light">Airdrop Successful! Changes would be reflected within 5 mins</p>
+              <p className="text-xs font-light">Airdrop Successful! Changes would be reflected within 5 mins.</p>
             </div>
           </div>
         )}

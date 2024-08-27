@@ -50,8 +50,8 @@ const MnemonicPage = () => {
       <div className="flex flex-col w-full justify-between h-full">
         <div className="w-full">
           <div className="grid grid-cols-3 gap-4 w-full">
-            {mnemonic.split(" ").map((word) => (
-              <div key={word} className="bg-white text-black w-full py-2 text-center rounded">
+            {mnemonic.split(" ").map((word, idx) => (
+              <div key={idx} className="bg-white text-black w-full py-2 text-center rounded">
                 {word}
               </div>
             ))}
